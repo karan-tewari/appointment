@@ -1,0 +1,15 @@
+.addLocForm {
+    float: left;
+    width: 100%;
+    border: 1px solid #ccc;
+    padding: 25px;
+    box-shadow: 1px 1px 8px #CCC;
+}
+.buttonContainer {
+    float: right;
+    padding: 15px;
+}
+
+.buttonContainer button {
+    margin: 0 10px;
+}

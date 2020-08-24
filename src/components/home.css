@@ -1,0 +1,27 @@
+.home-container {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    height: 100vh;
+    background-color: #eee;
+}
+
+.top-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.contents {
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    text-align: center;
+}
+.noContentHead {
+    color: #000;
+    font-size: 30px;
+    font-weight: 500;
+    margin: 0;
+}
