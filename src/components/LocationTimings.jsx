@@ -1,111 +1,88 @@
 import React from 'react';
-import { Field, reduxForm } from 'redux-form';
-import TextField from '@material-ui/core/TextField';
-// import { RadioButton, RadioButtonGroup } from '@material-ui/core/RadioButton';
+
 import Checkbox from '@material-ui/core/Checkbox';
-// import SelectField from '@material-ui/core/SelectField';
-import MenuItem from '@material-ui/core/MenuItem';
-// import asyncValidate from './asyncValidate';
-// import validate from './validate';
+import TextField from '@material-ui/core/TextField';
+import Switch from '@material-ui/core/Switch';
+import Button from '@material-ui/core/Button';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import { Link } from 'react-router-dom';
 
-const renderTextField = (
-  { input, label, meta: { touched, error }, ...custom },
-) => (
-  <TextField
-    hintText={label}
-    floatingLabelText={label}
-    errorText={touched && error}
-    {...input}
-    {...custom}
-  />
-);
 
-const renderCheckbox = ({ input, label }) => (
-  <Checkbox
-    label={label}
-    checked={input.value ? true : false}
-    onCheck={input.onChange}
-  />
-);
+const LocationTimings =()=>{
 
-// const renderRadioGroup = ({ input, ...rest }) => (
-//   <RadioButtonGroup
-//     {...input}
-//     {...rest}
-//     valueSelected={input.value}
-//     onChange={(event, value) => input.onChange(value)}
-//   />
-// );
+  const [checked, setChecked] = React.useState(true);
 
-// const renderSelectField = (
-//   { input, label, meta: { touched, error }, children, ...custom },
-// ) => (
-//   <SelectField
-//     floatingLabelText={label}
-//     errorText={touched && error}
-//     {...input}
-//     onChange={(event, index, value) => input.onChange(value)}
-//     children={children}
-//     {...custom}
-//   />
-// );
+  const [state, setState] = React.useState({
+    checkedA: true,
+    checkedB: true,
+  });
 
-const LocationTimings = props => {
-  const { handleSubmit, pristine, reset, submitting } = props;
-  return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <Field
-          name="firstName"
-          component={renderTextField}
-          label="First Name"
-        />
-      </div>
-      <div>
-        <Field name="lastName" component={renderTextField} label="Last Name" />
-      </div>
-      <div>
-        <Field name="email" component={renderTextField} label="Email" />
-      </div>
-      <div>
-        {/* <Field name="sex" component={renderRadioGroup}>
-          <RadioButton value="male" label="male" />
-          <RadioButton value="female" label="female" />
-        </Field> */}
-      </div>
-      <div>
-        {/* <Field
-          name="favoriteColor"
-          component={renderSelectField}
-          label="Favorite Color"
-        >
-          <MenuItem value="ff0000" primaryText="Red" />
-          <MenuItem value="00ff00" primaryText="Green" />
-          <MenuItem value="0000ff" primaryText="Blue" />
-        </Field> */}
-      </div>
-      <div>
-        <Field name="employed" component={renderCheckbox} label="Employed" />
-      </div>
-      <div>
-        <Field
-          name="notes"
-          component={renderTextField}
-          label="Notes"
-          multiLine={true}
-          rows={2}
-        />
-      </div>
-      <div>
-        <button type="submit" disabled={pristine || submitting}>Submit</button>
-        <button type="button" disabled={pristine || submitting} onClick={reset}>
-          Clear Values
-        </button>
-      </div>
-    </form>
-  );
-};
+  const handleChange = (event) => {
+    setChecked(event.target.checked);
+  };
 
-export default reduxForm({
-  form: 'MaterialUiForm', // a unique identifier for this form
-})(LocationTimings);
+  const handleSwitchChange = (event) => {
+    setState({ ...state, [event.target.name]: event.target.checked });
+  };
+
+
+  return(
+    <div>
+<div>
+   <FormControlLabel
+        control={<Checkbox checked={checked}
+        onChange={handleChange}
+        inputProps={{ 'aria-label': 'primary checkbox' }} />}
+        label="Monday"
+      />
+            <TextField
+        id="time"
+        label="Time"
+        type="time"
+        defaultValue="07:30"
+        InputLabelProps={{
+          shrink: true,
+        }}
+        inputProps={{
+          step: 1800, // 5 min
+        }}
+      />
+  <Switch
+        checked={state.checkedA}
+        onChange={handleSwitchChange}
+        name="checkedA"
+        inputProps={{ 'aria-label': 'secondary checkbox' }}
+      />
+      <TextField
+        id="time"
+        label="Time"
+        type="time"
+        defaultValue="07:30"
+        InputLabelProps={{
+          shrink: true,
+        }}
+        inputProps={{
+          step: 1800, // 5 min
+        }}
+      />
+  <Switch
+        checked={state.checkedA}
+        onChange={handleSwitchChange}
+        name="checkedA"
+        inputProps={{ 'aria-label': 'secondary checkbox' }}
+      />
+      <Button variant="contained" color="primary">Apply to all checked</Button>
+  </div>
+  <div>
+    <Link to="/addLocation">
+    <Button variant="contained" color="primary">Save</Button>
+    </Link>
+    <Link to="/">
+    <Button variant="contained" color="secondary">Cancel</Button>
+    </Link>
+  </div>
+  </div>
+  )
+}
+
+export default LocationTimings

@@ -1,0 +1,1 @@
+export {editLocation,deleteLocation, addLocation} from './location';

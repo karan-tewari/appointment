@@ -4,6 +4,7 @@ import TextField from "@material-ui/core/TextField";
 
 import "./addLoc.css";
 import Button from "@material-ui/core/Button";
+import { Link } from "react-router-dom";
 
 const AddLocation = () => {
    return (
@@ -67,10 +68,12 @@ const AddLocation = () => {
                      />
                   </div>
                   <div className="col-lg-6">
+                     <Link to="/addfacilities">
                      <TextField
                         style={{ width: "100%", margin: "15px 0" }}
                         label="Facility Time"
                      />
+                     </Link>
                   </div>
                   <div className="col-lg-6">
                      <TextField
@@ -80,12 +83,16 @@ const AddLocation = () => {
                   </div>
                   <div className="col-lg-12">
                      <div className="buttonContainer">
+                        <Link to="/">
                         <Button variant="contained" color="secondary">
                            Cancel
                         </Button>
+                        </Link>
+                        <Link to="/showlocations">
                         <Button variant="contained" color="primary">
                            Save
                         </Button>
+                        </Link>
                      </div>
                   </div>
                </div>
